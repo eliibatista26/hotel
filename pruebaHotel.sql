@@ -1,7 +1,10 @@
 Create database hotel;
 use hotel;
 
-# In this table contains all information about the client who is going to stay at the hotel
+# Es una tabla que creamos para almacenar todos los datos del huesped que vamos a ingresar
+# cuando le demos de alta en nuestro hotel. 
+# Colocamos una columna del ID del tipo de persona que la enlazamos con la tabla tipo de persona.
+
 create table Guest(
 IDGuest int not null primary key auto_increment,
 Identification varchar(20) unique not null, 
@@ -14,11 +17,17 @@ birthdayDate date not null,
 IDPersonType int,
 foreign Key(IDPersonType) references PersonType (IDPersonType)
 );
+
+# Son inserciones de prueba para poder hacer pruebas en la base de datos. 
+
 insert into Guest(Identification,name,surname,email,country,numberphone,birthdayDate) values('4678939i','ee','ee','he@he.com','spain','+3456787998','2009-05-09');
 insert into Guest values (null,'4672639y','h','h','h@h.com','spain','+3456787998','2009-05-09',1);
-#In this table contains the information about the type of room we are going 
-# to assign to the client. For example, if it's double room, if it's triple room,
-# individual room. 
+
+
+
+# Esta tabla la creamos para almacenar los datos del tipo de habitaciones que obrecemos en nuestro hotel.
+# Esta tabla que hemos creado solo la tocara los administradores, ya que ellos son los que van a saber que tipo 
+# de habitaciones tiene el hotel. 
 
 create table RoomType(
 IDType int not null primary key auto_increment, 
@@ -26,10 +35,9 @@ typeRoom varchar(50) not null,
 Description text not null , 
 picture varchar(50) not null
 );
-# In this table constains all the information about the room. 
-# And his foregin key, the other table like that of client (You need to link all the information in the client table with the room.),
-# available (You need to know if the room is a readiness or busy), 
-#type(You need know what is the kind of room you are going to assigned.)
+
+
+# Esta tabla de habitación la creamos para almacenar las habitaciones, que vamos a tener que 
 
 create table Room(
 nRoom int primary key not null auto_increment, 
@@ -41,7 +49,7 @@ foreign key (IDType) references RoomType (IDType)
 ); 
 
  
- #This table is to know the name of the 
+
 create table Service(
 IDService int auto_increment primary key,
 name varchar(50) not null); 
